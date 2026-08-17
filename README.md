@@ -1,6 +1,6 @@
 # NVIDIA DGX — Remote Connection Guide
 
-A step-by-step guide for connecting to the lab DGX server via **VS Code Remote - SSH**.
+A step-by-step guide for connecting to the lab DGX server over SSH.
 
 > New to the lab? See the [New User Account Setup Guide](NEW_USER_SETUP.md) for getting your own account and SSH key set up first.
 
@@ -10,7 +10,7 @@ A step-by-step guide for connecting to the lab DGX server via **VS Code Remote -
 
 | Item | Detail | Note |
 | --- | --- | --- |
-| Server IP | `172.25.231.3` | Internal LAN |
+| Server IP | `100.88.61.40` | Tailscale IP — you must be connected to the lab's Tailscale network first |
 | Port | `22` | Standard SSH |
 | Shared account | `hwlab` | Ask admin for password · **Do NOT share outside lab** |
 
@@ -40,63 +40,33 @@ ssh-keygen -t rsa -b 4096
 
 ---
 
-## Step 2 — Test the Connection
+## Step 2 — Connect to Tailscale
 
-Verify the connection works before setting up VS Code.
+The server is only reachable over the lab's Tailscale network, not the open internet or LAN.
+
+- Install Tailscale: https://tailscale.com/download
+- Log in with your Google or GitHub account
+- Ask the admin to add you to the lab's Tailscale network
+
+---
+
+## Step 3 — Test the Connection
 
 **Windows:**
 
 ```powershell
-ssh -i "C:\ssh_keys\id_rsa" hwlab@172.25.231.3
+ssh -i "C:\ssh_keys\id_rsa" hwlab@100.88.61.40
 ```
 
 **Mac / Linux:**
 
 ```bash
-ssh hwlab@172.25.231.3
+ssh hwlab@100.88.61.40
 ```
 
 > **First-time prompt:** Type `yes` when asked about host authenticity.  
 > Enter the `hwlab` password — characters are hidden while typing, that's normal.  
 > Once in, run `nvidia-smi` to verify GPU status.
-
----
-
-## Step 3 — Configure VS Code
-
-VS Code lets you edit remote files, use integrated terminals, and drag-and-drop uploads just like working locally.
-
-### 3.1 Install the extension
-
-In VS Code's Extensions panel, search for **Remote - SSH** (publisher: Microsoft) and install it.
-
-### 3.2 Create an SSH config file
-
-Create a plain text file at `C:\ssh_keys\vscode_config` (no extension) with the following content:
-
-```
-Host 172.25.231.3
-    HostName 172.25.231.3
-    User hwlab
-    Port 22
-    IdentityFile C:\ssh_keys\id_rsa
-```
-
-> **Mac/Linux:** Edit `~/.ssh/config` directly. Omit the `IdentityFile` line if you're using the default key path.
-
-### 3.3 Link the config to VS Code
-
-1. Open Settings (gear icon → Settings)
-2. Search for `ssh config`
-3. Set **Remote.SSH: Config File** to `C:\ssh_keys\vscode_config`
-
-### 3.4 Connect
-
-1. Open **Remote Explorer** (monitor icon in the sidebar)
-2. Click the connect icon next to `172.25.231.3`
-3. Choose **Linux** → Continue → enter the `hwlab` password
-
-The bottom-left corner turns green: `SSH: 172.25.231.3` — you're connected.
 
 ---
 
