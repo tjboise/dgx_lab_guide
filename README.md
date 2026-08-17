@@ -12,7 +12,8 @@ A step-by-step guide for connecting to the lab DGX server over SSH.
 | --- | --- | --- |
 | Server IP | `100.88.61.40` | Tailscale IP — you must be connected to the lab's Tailscale network first |
 | Port | `22` | Standard SSH |
-| Shared account | `hwlab` | Ask admin for password · **Do NOT share outside lab** |
+| Login | `your-username` | Your personal account — see [New User Account Setup Guide](NEW_USER_SETUP.md) if you don't have one yet |
+| Admin contact | tjzhang37@gmail.com | Account requests & support |
 
 ---
 
@@ -55,17 +56,17 @@ The server is only reachable over the lab's Tailscale network, not the open inte
 **Windows:**
 
 ```powershell
-ssh -i "C:\ssh_keys\id_rsa" hwlab@100.88.61.40
+ssh -i "C:\ssh_keys\id_rsa" your-username@100.88.61.40
 ```
 
 **Mac / Linux:**
 
 ```bash
-ssh hwlab@100.88.61.40
+ssh your-username@100.88.61.40
 ```
 
 > **First-time prompt:** Type `yes` when asked about host authenticity.  
-> Enter the `hwlab` password — characters are hidden while typing, that's normal.  
+> Personal accounts log in with your SSH key, no password needed.  
 > Once in, run `nvidia-smi` to verify GPU status.
 
 ---

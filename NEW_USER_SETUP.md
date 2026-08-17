@@ -35,7 +35,7 @@ ssh-keygen -t rsa -b 4096
 
 ## Step 2 — Send Your Public Key to the Admin
 
-Copy your public key and send it to the lab admin (tjzhang).
+Copy your public key:
 
 **Windows:**
 ```powershell
@@ -52,7 +52,27 @@ The output will look like:
 ssh-rsa AAAAB3NzaC1yc2EAAA... your-name@your-computer
 ```
 
-Send this entire string to the admin. **Never share your private key (`id_rsa`).**
+Email it to the lab admin at **tjzhang37@gmail.com** using this format:
+
+```
+To: tjzhang37@gmail.com
+Subject: DGX Account Request — <Your Full Name>
+
+Hi,
+
+I'd like to request an account on the lab DGX server.
+
+Name: <Your Full Name>
+Preferred username: <e.g. first initial + last name>
+Lab / advisor: <your lab or PI>
+Public key:
+<paste the full contents of id_rsa.pub here>
+
+Thanks,
+<Your Name>
+```
+
+**Never share your private key (`id_rsa`).** Only the `.pub` file / its contents go in the email.
 
 ---
 
@@ -77,12 +97,12 @@ Then connect via SSH:
 
 **Windows:**
 ```powershell
-ssh -i "C:\ssh_keys\id_rsa" your-username@SERVER_IP
+ssh -i "C:\ssh_keys\id_rsa" your-username@100.88.61.40
 ```
 
 **Mac / Linux:**
 ```bash
-ssh your-username@SERVER_IP
+ssh your-username@100.88.61.40
 ```
 
 ---
@@ -95,7 +115,7 @@ ssh your-username@SERVER_IP
 
 ```
 Host DGX
-    HostName SERVER_IP
+    HostName 100.88.61.40
     User your-username
     IdentityFile C:\ssh_keys\id_rsa        # Windows
     # IdentityFile ~/.ssh/id_rsa           # Mac / Linux
