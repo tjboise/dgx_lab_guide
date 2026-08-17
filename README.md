@@ -2,6 +2,8 @@
 
 A step-by-step guide for connecting to the lab DGX server via **VS Code Remote - SSH**.
 
+> New to the lab? See the [New User Account Setup Guide](NEW_USER_SETUP.md) for getting your own account and SSH key set up first.
+
 ---
 
 ## Server Information
