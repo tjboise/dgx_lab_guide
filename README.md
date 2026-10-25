@@ -1,3 +1,5 @@
+**English** | **[中文](README.zh-CN.md)**
+
 # NVIDIA DGX — Remote Connection Guide
 
 A step-by-step guide for connecting to the lab DGX server over SSH.

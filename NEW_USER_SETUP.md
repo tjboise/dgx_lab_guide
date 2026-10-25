@@ -1,3 +1,5 @@
+**English** | **[中文](NEW_USER_SETUP.zh-CN.md)**
+
 # New User Account Setup Guide
 
 A guide for lab members to get access to the NVIDIA DGX Spark server.
