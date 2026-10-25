@@ -14,21 +14,21 @@ Each lab member gets their own account on the DGX server. Your account is isolat
 
 You will use SSH keys to log in securely without a password.
 
-**Windows (PowerShell):**
+**Windows (PowerShell — open as Administrator, right-click → Run as Administrator):**
 ```powershell
 # Create a dedicated key directory
 New-Item -ItemType Directory -Path "C:\ssh_keys" -Force
 
-# Generate a 4096-bit RSA key pair
+# Generate an ed25519 key pair
 # Press ENTER for all prompts — leave the passphrase empty
-ssh-keygen -t rsa -b 4096 -f "C:\ssh_keys\id_rsa"
+ssh-keygen -t ed25519 -f "C:\ssh_keys\id_ed25519"
 ```
 
 **Mac / Linux:**
 ```bash
 # Press ENTER for all prompts
-ssh-keygen -t rsa -b 4096
-# Key will be saved to ~/.ssh/id_rsa
+ssh-keygen -t ed25519
+# Key will be saved to ~/.ssh/id_ed25519
 ```
 
 ---
@@ -39,17 +39,17 @@ Copy your public key:
 
 **Windows:**
 ```powershell
-type C:\ssh_keys\id_rsa.pub
+type C:\ssh_keys\id_ed25519.pub
 ```
 
 **Mac / Linux:**
 ```bash
-cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_ed25519.pub
 ```
 
 The output will look like:
 ```
-ssh-rsa AAAAB3NzaC1yc2EAAA... your-name@your-computer
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5... your-name@your-computer
 ```
 
 Email it to the lab admin at **tjzhang37@gmail.com** using this format:
@@ -66,13 +66,13 @@ Name: <Your Full Name>
 Preferred username: <e.g. first initial + last name>
 Lab / advisor: <your lab or PI>
 Public key:
-<paste the full contents of id_rsa.pub here>
+<paste the full contents of id_ed25519.pub here>
 
 Thanks,
 <Your Name>
 ```
 
-**Never share your private key (`id_rsa`).** Only the `.pub` file / its contents go in the email.
+**Never share your private key (`id_ed25519`).** Only the `.pub` file / its contents go in the email.
 
 ---
 
@@ -97,7 +97,7 @@ Then connect via SSH:
 
 **Windows:**
 ```powershell
-ssh -i "C:\ssh_keys\id_rsa" your-username@100.88.61.40
+ssh -i "C:\ssh_keys\id_ed25519" your-username@100.88.61.40
 ```
 
 **Mac / Linux:**
@@ -117,8 +117,8 @@ ssh your-username@100.88.61.40
 Host DGX
     HostName 100.88.61.40
     User your-username
-    IdentityFile C:\ssh_keys\id_rsa        # Windows
-    # IdentityFile ~/.ssh/id_rsa           # Mac / Linux
+    IdentityFile C:\ssh_keys\id_ed25519        # Windows
+    # IdentityFile ~/.ssh/id_ed25519           # Mac / Linux
 ```
 
 4. Press `Ctrl+Shift+P` → `Remote-SSH: Connect to Host` → select `DGX`

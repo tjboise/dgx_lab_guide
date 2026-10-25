@@ -27,16 +27,16 @@ Open **PowerShell as Administrator** (right-click → Run as Administrator):
 # Create a dedicated key directory
 New-Item -ItemType Directory -Path "C:\ssh_keys" -Force
 
-# Generate a 4096-bit RSA key pair
+# Generate an ed25519 key pair
 # Press ENTER for all prompts — leave the passphrase empty
-ssh-keygen -t rsa -b 4096 -f "C:\ssh_keys\id_rsa"
+ssh-keygen -t ed25519 -f "C:\ssh_keys\id_ed25519"
 ```
 
 ### Mac / Linux users
 
 ```bash
-# Press ENTER for all prompts — saved to ~/.ssh/id_rsa
-ssh-keygen -t rsa -b 4096
+# Press ENTER for all prompts — saved to ~/.ssh/id_ed25519
+ssh-keygen -t ed25519
 ```
 
 ---
@@ -56,7 +56,7 @@ The server is only reachable over the lab's Tailscale network, not the open inte
 **Windows:**
 
 ```powershell
-ssh -i "C:\ssh_keys\id_rsa" your-username@100.88.61.40
+ssh -i "C:\ssh_keys\id_ed25519" your-username@100.88.61.40
 ```
 
 **Mac / Linux:**
@@ -77,4 +77,4 @@ ssh your-username@100.88.61.40
 | --- | --- |
 | **No host installs** | Never run `pip install` on the host environment. Use Miniconda virtual environments or Docker containers. |
 | **Check GPU before starting** | Run `nvidia-smi` before any training job to confirm resources are free. |
-| **Use tmux or screen** | Never run long jobs directly in the VS Code terminal — a network drop kills the process. Use `tmux` or `screen` to keep sessions alive in the background. |
+| **Use tmux or screen** | Never run long jobs directly in a bare SSH terminal — a network drop kills the process. Use `tmux` or `screen` to keep sessions alive in the background. |
